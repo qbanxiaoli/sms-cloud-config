@@ -1,0 +1,18 @@
+#redis 缓存配置
+spring:
+  #redis
+  redis:
+    host: 123.207.85.155
+    database: 0
+    port: 6379
+    password: 123456
+    pool:
+      max-idle: 8
+      max-active: 8
+      max-wait: 1
+      min-idle: 0
+    timeout: 0
+    #key 过期时间 秒
+    keyOutTime: 3000
+    #keySign 过期时间 秒
+    keySignOutTime: 60

@@ -1,0 +1,63 @@
+# 项目的相关配置
+spring:
+  # 服务名
+  application:
+    name: sms-service
+  cloud:
+    loadbalancer:
+      # 开启重试机制
+      retry:
+        enabled: true
+
+  #i18n configuration(添加语言国际化支持)
+  messages:
+    basename: i18n/messages
+
+#pagehelper分页插件
+pagehelper:
+  # 配置数据库方言，不配置也行，分页插件会自动检测当前的数据库链接，自动选择合适的分页方式，
+  # 使用 SqlServer2012 数据库时，需要手动指定为 sqlserver2012，否则会使用 SqlServer2005 的方式进行分页。
+  helper-dialect: mysql
+  # 分页合理化参数，默认值为false。当该参数设置为 true 时，pageNum<=0 时会查询第一页，
+  # pageNum>pages（超过总数时），会查询最后一页。默认false 时，直接根据参数进行查询。
+  reasonable: true
+  # 默认值为 false，当该参数设置为 true 时，如果 pageSize=0 或者 RowBounds.limit = 0 ,
+  # 就会查询出全部的结果（相当于没有执行分页查询，但是返回结果仍然是 Page 类型）
+  page-size-zero: true
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    # 是否优先使用IP地址作为主机名的标识，默认为false
+    prefer-ip-address: true
+    # 客户端向服务端发送心跳（服务续约任务）的调用时间间隔，默认为30秒
+    lease-renewal-interval-in-seconds: 30
+    # 服务端在收到最后一次心跳之后的等待时间上限（服务时效的时间），默认为90秒
+    lease-expiration-duration-in-seconds: 90
+  client:
+    # 开启健康检查（需要spring-boot-starter-actuator依赖）
+    healthcheck:
+      enable: true
+
+hystrix:
+  command:
+    default:
+      # 断路器的超时时间需要大于Ribbon的超时时间*重试次数，不然不会触发重试，单位毫秒
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
+
+# 当访问到故障请求时，会再尝试访问一次当前实例（MaxAutoRetries），如果不行，就会换一个实例进行访问，
+# 如果还是不行，再换一个实例访问（MaxAutoRetriesNextServer），如果依然不行，返回失败信息。
+ribbon:
+  # 请求连接的超时时间，单位毫秒，若请求出现连接超时，会自动进行重试
+  ConnectTimeout: 60000
+  # 请求处理的超时时间，单位毫秒，若请求的处理时间超过该配置且依赖服务的请求还未响应，会自动进行重试
+  ReadTimeout: 60000
+  # 对所有操作请求都进行重试
+  OkToRetryOnAllOperations: true
+  # 切换实例的重试次数
+  MaxAutoRetriesNextServer: 2
+  # 对当前实例的重试次数
+  MaxAutoRetries: 1
