@@ -1,0 +1,55 @@
+# 项目的相关配置
+spring:
+  # 服务名
+  application:
+    name: gateway-service
+  cloud:
+    loadbalancer:
+      # 开启重试机制
+      retry:
+        enabled: true
+
+zuul:
+  sensitive:
+    headers:
+  routes:
+    sms:
+      path: /sms/**
+      serviceId: sms-service
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    # 是否优先使用IP地址作为主机名的标识，默认为false
+    prefer-ip-address: true
+    # 客户端向服务端发送心跳（服务续约任务）的调用时间间隔，默认为30秒
+    lease-renewal-interval-in-seconds: 30
+    # 服务端在收到最后一次心跳之后的等待时间上限（服务时效的时间），默认为90秒
+    lease-expiration-duration-in-seconds: 90
+  client:
+    # 开启健康检查（需要spring-boot-starter-actuator依赖）
+    healthcheck:
+      enable: true
+
+hystrix:
+  command:
+    default:
+      # 断路器的超时时间需要大于Ribbon的超时时间*重试次数，不然不会触发重试，单位毫秒
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
+
+# 当访问到故障请求时，会再尝试访问一次当前实例（MaxAutoRetries），如果不行，就会换一个实例进行访问，
+# 如果还是不行，再换一个实例访问（MaxAutoRetriesNextServer），如果依然不行，返回失败信息。
+ribbon:
+  # 请求连接的超时时间，单位毫秒，若请求出现连接超时，会自动进行重试
+  ConnectTimeout: 60000
+  # 请求处理的超时时间，单位毫秒，若请求的处理时间超过该配置且依赖服务的请求还未响应，会自动进行重试
+  ReadTimeout: 60000
+  # 对所有操作请求都进行重试
+  OkToRetryOnAllOperations: true
+  # 切换实例的重试次数
+  MaxAutoRetriesNextServer: 2
+  # 对当前实例的重试次数
+  MaxAutoRetries: 1
