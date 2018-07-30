@@ -2,7 +2,7 @@
 spring:
   # 服务名
   application:
-    name: gateway-service
+    name: zuul-service
   cloud:
     loadbalancer:
       # 开启重试机制
