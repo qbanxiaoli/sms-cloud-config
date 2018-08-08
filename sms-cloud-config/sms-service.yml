@@ -9,10 +9,6 @@ spring:
       retry:
         enabled: true
 
-  #i18n configuration(添加语言国际化支持)
-  messages:
-    basename: i18n/messages
-
 #pagehelper分页插件
 pagehelper:
   # 配置数据库方言，不配置也行，分页插件会自动检测当前的数据库链接，自动选择合适的分页方式，
