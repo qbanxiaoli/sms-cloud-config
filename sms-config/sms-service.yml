@@ -9,6 +9,11 @@ spring:
       retry:
         enabled: true
 
+# 忽略权限拦截，动态刷新配置
+management:
+  security:
+    enabled: false
+
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
