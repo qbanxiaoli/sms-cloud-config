@@ -1,3 +1,6 @@
+server:
+  port: 8000
+
 # 项目的相关配置
 spring:
   # 服务名
