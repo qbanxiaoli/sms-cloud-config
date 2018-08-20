@@ -39,7 +39,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 600000
+            timeoutInMilliseconds: 720000
 
 # 当访问到故障请求时，会再尝试访问一次当前实例（MaxAutoRetries），如果不行，就会换一个实例进行访问，
 # 如果还是不行，再换一个实例访问（MaxAutoRetriesNextServer），如果依然不行，返回失败信息。
