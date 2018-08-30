@@ -21,6 +21,7 @@ eureka:
     lease-renewal-interval-in-seconds: 30
     # 服务端在收到最后一次心跳之后的等待时间上限（服务时效的时间），默认为90秒
     lease-expiration-duration-in-seconds: 90
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
   client:
     # 开启健康检查（需要spring-boot-starter-actuator依赖）
     healthcheck:
