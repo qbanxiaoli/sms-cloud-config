@@ -2,10 +2,10 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://123.207.85.155:3306/sms?useUnicode=true&characterEncoding=utf8&useSSL=false
+    name: root
+    password: Jj9/i3.LqiFB
     hikari:
-      jdbc-url: jdbc:mysql://123.207.85.155:3306/sms?useUnicode=true&characterEncoding=utf8&useSSL=false
-      username: root
-      password: Jj9/i3.LqiFB
       # 连接只读数据库时配置为true， 保证安全
       read-only: false
       # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒
