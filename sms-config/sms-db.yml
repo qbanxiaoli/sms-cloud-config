@@ -1,31 +1,17 @@
 # 数据库配置
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://123.207.85.155:3306/sms?useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: root
-    password: Jj9/i3.LqiFB
-    # 使用druid数据源
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      # 连接池中最小的活跃连接数
-      min-idle: 1
-      # 连接池建立时创建的初始化连接数
-      initial-size: 1
-      # 连接池中最大的活跃连接数
-      max-active: 20
-      # 配置获取连接等待超时的时间
-      max-wait: 60000
-      validation-query: select 'x'
-      time-between-eviction-runs-millis: 60000
-      min-evictable-idle-time-millis: 300000
-      # 是否在连接空闲一段时间后检测其可用性
-      test-while-idle: true
-      # 是否在获得连接后检测其可用性
-      test-on-borrow: false
-      # 是否在连接放回连接池后检测其可用性
-      test-on-return: false
-      # 打开PSCache，并且指定每个连接上PSCache的大小
-      pool-prepared-statements: true
-      # 配置监控统计拦截的filters，去掉后监控界面SQL无法统计，“wall”用于防火墙
-      filters: stat,wall
+    hikari:
+      jdbc-url: jdbc:mysql://123.207.85.155:3306/sms?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: Jj9/i3.LqiFB
+      # 连接只读数据库时配置为true， 保证安全
+      read-only: false
+      # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒
+      connection-timeout: 30000
+      # 一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟
+      idle-timeout: 600000
+      # 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';）
+      max-lifetime: 1800000
+      # 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+      maximum-pool-size: 15
