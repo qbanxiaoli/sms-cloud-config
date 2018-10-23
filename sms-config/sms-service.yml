@@ -5,12 +5,7 @@ server:
 spring:
   # 服务名
   application:
-    name: sms-service
-  cloud:
-    loadbalancer:
-      # 开启重试机制
-      retry:
-        enabled: true
+    name: tool-service
 
 eureka:
   instance:
