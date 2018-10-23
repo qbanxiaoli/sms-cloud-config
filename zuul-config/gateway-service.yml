@@ -5,20 +5,20 @@ server:
 spring:
   # 服务名
   application:
-    name: zuul-server
+    name: gateway-server
   cloud:
-    loadbalancer:
-      # 开启重试机制
-      retry:
-        enabled: true
-
-zuul:
-  sensitive:
-    headers:
-  routes:
-    sms:
-      path: /sms/**
-      serviceId: sms-service
+    gateway:
+      routes:
+      # 配置一个路由名字，可任意命名
+      - id: sms_route
+        # 必须使用http进行转发，lb代表从注册中心获取服务
+        uri: lb://sms-service
+        # 转发该路径中包含/front/**的请求到tcm-front-service服务
+        predicates:
+        - Path=/sms/**
+        # 必须加上StripPrefix=1，否则访问服务时会带上front，而不是我们期望的去掉front，只保留**部分
+        filters:
+        - StripPrefix=1
 
 eureka:
   instance:
