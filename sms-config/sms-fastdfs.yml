@@ -17,7 +17,7 @@ fdfs:
   tracker-list:
   - 192.168.23.37:22122
   # 存储服务器storage_server访问地址
-  web-server-url: http://192.168.23.37:8080/
+  web-server-url: http://192.168.23.37/
 
 
 
