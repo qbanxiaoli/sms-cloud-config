@@ -15,7 +15,7 @@ spring:
       # 配置一个路由名字，可任意命名
       - id: sms_route
         # 必须使用http进行转发，lb代表从注册中心获取服务
-        uri: lb://tool-service
+        uri: wss://tool-service
         # 转发该路径中包含/tool/**的请求到tool-service服务
         predicates:
         - Path=/tool/**
