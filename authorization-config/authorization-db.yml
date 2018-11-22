@@ -15,3 +15,19 @@ spring:
       max-lifetime: 1800000
       # 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
       maximum-pool-size: 15
+  # redis
+  redis:
+    host: 123.207.85.155
+    database: 0
+    port: 6379
+    password: 123456
+    pool:
+      max-idle: 8
+      max-active: 8
+      max-wait: 1
+      min-idle: 0
+    timeout: 0
+    # key 过期时间 秒
+    keyOutTime: 3000
+    # keySign 过期时间 秒
+    keySignOutTime: 60
