@@ -7,7 +7,7 @@ spring:
   application:
     name: authorization-server
   datasource:
-    url: jdbc:mysql://123.207.85.155:3306/sms?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://123.207.85.155:3306/authorization?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: Jj9/i3.LqiFB
     hikari:
