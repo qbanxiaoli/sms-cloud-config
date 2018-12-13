@@ -38,3 +38,9 @@ spring:
     # keySign 过期时间 秒
     keySignOutTime: 60
 
+encrypt:
+  key-store:
+    location: classpath:/tcm.jks
+    alias: tcm
+    password: tcmpass
+    secret: tcmpass
