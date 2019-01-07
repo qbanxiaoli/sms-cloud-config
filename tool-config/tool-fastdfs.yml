@@ -15,9 +15,9 @@ fdfs:
     height: 150
   # 跟踪服务器tracker_server请求地址,支持多个，这里只有一个，如果有多个在下方加- x.x.x.x:port
   tracker-list:
-    - 47.98.32.123:22122
+    - 192.168.33.121:22122
   # 存储服务器storage_server访问地址
-  web-server-url: http://47.98.32.123:9999/
+  web-server-url: http://192.168.33.121:8080/
 
 
 
