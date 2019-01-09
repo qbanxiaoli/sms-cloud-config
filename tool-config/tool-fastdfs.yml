@@ -17,7 +17,7 @@ fdfs:
   tracker-list:
     - 123.207.85.155:22122
   # 存储服务器storage_server访问地址
-  web-server-url: https://www.qbanxiaoli.cn/fdfs/
+  web-server-url: https://www.qbanxiaoli.cn/fastdfs/
 
 
 
