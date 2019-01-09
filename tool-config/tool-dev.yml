@@ -18,7 +18,7 @@ spring:
   #redis
   redis:
     database: 0
-    host: 123.207.85.155
+    host: localhost
     password: 123456
     port: 6379
     jedis:
