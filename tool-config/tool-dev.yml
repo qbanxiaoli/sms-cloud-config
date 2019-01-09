@@ -17,17 +17,24 @@ spring:
       maximum-pool-size: 15
   #redis
   redis:
-    host: 123.207.85.155
     database: 0
-    port: 6379
+    host: 123.207.85.155
     password: 123456
-    pool:
-      max-idle: 8
-      max-active: 8
-      max-wait: 1
-      min-idle: 0
-    timeout: 0
-    #key 过期时间 秒
-    keyOutTime: 3000
-    #keySign 过期时间 秒
-    keySignOutTime: 60
+    port: 6379
+    jedis:
+      pool:
+        #最大连接数据库连接数,设 0 为没有限制
+        max-active: 8
+        #最大等待连接中的数量,设 0 为没有限制
+        max-idle: 8
+        #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+        max-wait: -1ms
+        #最小等待连接中的数量,设 0 为没有限制
+        min-idle: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+      shutdown-timeout: 100ms
