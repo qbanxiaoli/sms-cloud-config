@@ -28,6 +28,16 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: true
 
+# 屏蔽安全验证
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
 feign:
   client:
     config:
