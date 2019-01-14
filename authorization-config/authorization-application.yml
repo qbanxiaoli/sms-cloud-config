@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8002
 
 # 项目的相关配置
 spring:
